@@ -1,25 +1,64 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from 'react'
+import Graph from './components/Graph'
+import SipInput from './components/Input'
+import SipResult from './components/Result'
 
-function App() {
+import {
+   Grid,
+} from '@mui/material';
+import calculateSip from './calculator/sip';
+import calculateInvestment from './calculator/investment';
+import calculateGain from './calculator/gain';
+
+const App = () => {
+  // states
+  const [monthlyInvestment, setMonthlyInvestment] = useState(5000);
+  const [annualRate, setAnnualRate] = useState(12);
+  const [years, setYears] = useState(1);
+  const [totalValue, setTotalValue] = useState(0);
+  const [totalInvestment, setTotalInvestment] = useState(0);
+  const [totalGain, setTotalGain] = useState(0);
+
+  // useEffect
+  useEffect(() => {
+    setTotalInvestment(calculateInvestment(monthlyInvestment, years));
+    setTotalValue(calculateSip(monthlyInvestment, annualRate, years));
+  }, [monthlyInvestment, annualRate, years]);
+
+  useEffect(() => {
+    setTotalGain(calculateGain(totalValue, totalInvestment)); 
+  },[totalValue, totalInvestment]);
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Grid p={3} m={3}>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={12} md={6}>
+          <Grid item xs={12}>
+            <SipInput 
+              monthlyInvestment={monthlyInvestment}
+              annualRate={annualRate}
+              years={years}
+              setMonthlyInvestment={setMonthlyInvestment}
+              setAnnualRate={setAnnualRate}
+              setYears={setYears}
+            />
+          </Grid>
+
+          <Grid item xs={12} mt={7}> 
+            <SipResult totalValue={totalValue}/>
+          </Grid>
+        </Grid>
+
+        <Grid item xs={12} sm={12} md={6}>
+          <Graph
+            totalGain={totalGain}
+            totalInvestment={totalInvestment}
+          />
+        </Grid>
+      </Grid>
+    </Grid>
+  )
 }
 
-export default App;
+export default App
