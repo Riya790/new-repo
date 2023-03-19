@@ -1,7 +1,9 @@
 import React from 'react';
 
 import {
+    Box,
     TextField,
+    InputAdornment,
     Typography,
     Grid,
     Slider,
@@ -24,13 +26,18 @@ const SipInput = ({
                 <Typography variant='subtitle1'>monthly investment</Typography>
             </Grid>
             <Grid item xs={4}>
-                <TextField 
-                    id="outlined-basic" 
-                    label={monthlyInvestment}
-                    variant="outlined" 
-                    fullWidth
-                    onChange={(e) => setMonthlyInvestment(e.target.value)}
-                />
+                    <TextField 
+                        id="outlined-basic" 
+                        size="small"
+                        label="monthly investment"
+                        value={monthlyInvestment}
+                        variant="outlined" 
+                        fullWidth
+                        onChange={(e) => setMonthlyInvestment(e.target.value)}
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">₹</InputAdornment>,
+                        }}
+                    />
             </Grid>
             <Grid item xs={12}>
                 <Slider 
@@ -53,10 +60,15 @@ const SipInput = ({
             <Grid item xs={4}>
                 <TextField 
                     id="rate" 
+                    size="small"
                     variant="outlined" 
-                    label={annualRate}
+                    label="rate %"
+                    value={annualRate}
                     fullWidth
                     onChange={(e) => setAnnualRate(e.target.value)}
+                    InputProps={{
+                        endAdornment: <InputAdornment position="end">%</InputAdornment>,
+                    }}
                 />
             </Grid>
             <Grid item xs={12}>
@@ -80,9 +92,14 @@ const SipInput = ({
             <Grid item xs={4}>
                 <TextField 
                     id="time-period" 
-                    variant="outlined" 
-                    label={years}
+                    size="small"
+                    variant="outlined"
+                    label="time-period"
+                    value={years}
                     fullWidth onChange={(e) => setYears(e.target.value)}
+                    InputProps={{
+                        endAdornment: <InputAdornment position="end">year</InputAdornment>,
+                    }}
                 />
             </Grid>
             <Grid item xs={12}>
