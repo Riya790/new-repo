@@ -12,7 +12,7 @@ const SipResult = ({totalValue}) => {
     <>
         <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <Typography variant='h3' gutterBottom>total value : {totalValue}</Typography>
+                    <Typography variant='h3' gutterBottom>total value : ₹ {totalValue}</Typography>
                 </Grid>
         </Grid>
     </>

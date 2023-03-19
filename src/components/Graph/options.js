@@ -39,12 +39,12 @@ const options = {
         position: 'bottom',
         horizontalAlign: 'center',
         offsetY: 0,
-        height: 34,
+        height: 69,
         fontSize: '14px',
         fontFamily: 'Helvetica, Arial',
         fontWeight: 'light',
         formatter: function(seriesName, opts) {
-            return [seriesName, " - ", opts.w.globals.series[opts.seriesIndex]]
+            return [seriesName, " - ₹", opts.w.globals.series[opts.seriesIndex]]
         }
     },
     labels: ['invested amount', 'estimated returns'],
