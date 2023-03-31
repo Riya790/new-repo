@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Graph from './components/Graph'
+import SipHeader from './components/Header'
 import SipInput from './components/Input'
 import SipResult from './components/Result'
 
@@ -33,6 +34,10 @@ const App = () => {
   return (
     <Grid p={3} m={3}>
       <Grid container spacing={3}>
+        <Grid item xs={12} sm={12} md={12}>
+          <SipHeader/>
+        </Grid>
+
         <Grid item xs={12} sm={12} md={6}>
           <Grid item xs={12}>
             <SipInput 

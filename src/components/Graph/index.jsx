@@ -12,7 +12,7 @@ const Graph = ({totalGain, totalInvestment}) => {
 
     // states
     const [options, setOptions] = useState(graphOptions)
-    const [chartSeries, setChartSeries] = useState([60000, 3351])
+    const [chartSeries, setChartSeries] = useState([])
 
     // useEffect
     useEffect(() => {
