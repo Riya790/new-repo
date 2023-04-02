@@ -26,23 +26,32 @@ const SipInput = ({
                 <Typography variant='subtitle1'>monthly investment</Typography>
             </Grid>
             <Grid item xs={4}>
-                    <TextField 
+                    <TextField
                         id="outlined-basic" 
                         size="small"
                         label="monthly investment"
                         value={monthlyInvestment}
                         variant="outlined" 
+                        type='number'
                         fullWidth
-                        onChange={(e) => setMonthlyInvestment(e.target.value)}
+                        onChange={(e) => {
+                            if(e.target.value > 100000)
+                                setMonthlyInvestment(100000)
+                            else
+                                setMonthlyInvestment(e.target.value)
+                        }}
                         InputProps={{
+                            inputProps: {
+                                max: 100000, min: 500,
+                            },
                             startAdornment: <InputAdornment position="start">₹</InputAdornment>,
                         }}
                     />
             </Grid>
             <Grid item xs={12}>
                 <Slider 
-                    min={100} 
-                    max={10000000}
+                    min={500} 
+                    max={100000}
                     aria-label="principal" 
                     valueLabelDisplay="auto" 
                     value={monthlyInvestment}
