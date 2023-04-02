@@ -32,7 +32,6 @@ const SipInput = ({
                         label="monthly investment"
                         value={monthlyInvestment}
                         variant="outlined" 
-                        type='number'
                         fullWidth
                         onChange={(e) => {
                             if(e.target.value > 100000)
@@ -74,8 +73,16 @@ const SipInput = ({
                     label="rate %"
                     value={annualRate}
                     fullWidth
-                    onChange={(e) => setAnnualRate(e.target.value)}
+                    onChange={(e) => {
+                        if (e.target.value > 100) {
+                            setAnnualRate(100)
+                        } else
+                            setAnnualRate(e.target.value)
+                    }}
                     InputProps={{
+                        inputProps: {
+                            max: 100, min: 1,
+                        },
                         endAdornment: <InputAdornment position="end">%</InputAdornment>,
                     }}
                 />
@@ -105,8 +112,17 @@ const SipInput = ({
                     variant="outlined"
                     label="time-period"
                     value={years}
-                    fullWidth onChange={(e) => setYears(e.target.value)}
+                    fullWidth 
+                    onChange={(e) => {
+                        if (e.target.value > 100) {
+                            setYears(100)
+                        } else 
+                            setYears(e.target.value)
+                    }}
                     InputProps={{
+                        inputProps: {
+                            max: 100, min: 0,
+                        },
                         endAdornment: <InputAdornment position="end">year</InputAdornment>,
                     }}
                 />

@@ -5,7 +5,9 @@ import SipInput from './components/Input'
 import SipResult from './components/Result'
 
 import {
-   Grid,
+  Box,
+  Grid,
+  Paper,
 } from '@mui/material';
 import calculateSip from './calculator/sip';
 import calculateInvestment from './calculator/investment';
@@ -32,37 +34,45 @@ const App = () => {
   
 
   return (
-    <Grid p={3} m={3}>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={12} md={12}>
-          <SipHeader/>
-        </Grid>
+    // <Grid container spacing={2}>
+    //   <Grid item xs={12}>
+        // <Paper elevation={3}>
+          <Grid p={3} m={3}>
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={12} md={12}>
+                <SipHeader/>
+              </Grid>
 
-        <Grid item xs={12} sm={12} md={6}>
-          <Grid item xs={12}>
-            <SipInput 
-              monthlyInvestment={monthlyInvestment}
-              annualRate={annualRate}
-              years={years}
-              setMonthlyInvestment={setMonthlyInvestment}
-              setAnnualRate={setAnnualRate}
-              setYears={setYears}
-            />
+              <Grid item xs={12} sm={12} md={6} spacing={3}>
+                <Grid item xs={12}>
+                  <SipInput 
+                    monthlyInvestment={monthlyInvestment}
+                    annualRate={annualRate}
+                    years={years}
+                    setMonthlyInvestment={setMonthlyInvestment}
+                    setAnnualRate={setAnnualRate}
+                    setYears={setYears}
+                  />
+                </Grid>
+
+                <Grid item xs={12} mt={7}> 
+                  <SipResult totalValue={totalValue}/>
+                </Grid>
+              </Grid>
+
+              <Grid item xs={12} sm={12} md={6}>
+                <Box sx={{pl: 15}}>
+                  <Graph
+                    totalGain={totalGain}
+                    totalInvestment={totalInvestment}
+                  />
+                </Box>
+              </Grid>
+            </Grid>
           </Grid>
-
-          <Grid item xs={12} mt={7}> 
-            <SipResult totalValue={totalValue}/>
-          </Grid>
-        </Grid>
-
-        <Grid item xs={12} sm={12} md={6}>
-          <Graph
-            totalGain={totalGain}
-            totalInvestment={totalInvestment}
-          />
-        </Grid>
-      </Grid>
-    </Grid>
+        // </Paper>
+    //   </Grid>
+    // </Grid>
   )
 }
 
